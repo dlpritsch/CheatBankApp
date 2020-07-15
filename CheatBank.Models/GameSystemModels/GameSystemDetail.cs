@@ -1,4 +1,5 @@
 ﻿using CheatBank.Data;
+using CheatBank.Models.GameModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,6 @@ namespace CheatBank.Models.SystemModels
         public int SystemId { get; set; }
 
         public string SystemName { get; set; }
-        public virtual ICollection<GamesInSystem> GamesInSystem { get; set; } = new List<GamesInSystem>();
+        public List<GameListItem> GamesInSystem { get; set; }
     }
 }

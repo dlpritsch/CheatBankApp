@@ -11,10 +11,6 @@ namespace CheatBank.Models.GameModels
     {
         public int GameId { get; set; }
         public string TitleOfGame { get; set; }
-
-
         public string GameSystem { get; set; }
-        
-
     }
 }

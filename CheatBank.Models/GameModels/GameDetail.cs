@@ -19,7 +19,7 @@ namespace CheatBank.Models.GameModels
 
   
 
-        public virtual ICollection<Cheat> Cheats { get; set; } = new List<Cheat>();
+        public virtual ICollection<Cheat> Cheats { get; set; } = new List<Cheat>();  //this should be a CheatListItem, but leave that for 2.0
     }
 
 

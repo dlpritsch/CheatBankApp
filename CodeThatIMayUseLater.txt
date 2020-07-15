@@ -1,0 +1,41 @@
+{ //try
+              //{
+              //    bool allWentWell = false;
+              //    var entity =
+              //        new GameSystem()
+              //        {
+              //            SystemName = model.SystemName
+              //        };
+
+                //    using (var ctx = new ApplicationDbContext())
+                //    {
+                //        ctx.GameSystems.Add(entity);
+                //        var success = ctx.SaveChanges() == 1;
+
+                //        foreach (var gameInSystem in model.GamesInSystem)
+                //        {
+                //            var game =
+                //                new GamesInSystemCreate()
+                //                {
+                //                    SystemId = entity.SystemId,
+                //                    GameId = Convert.ToInt32(gameInSystem)
+                //                };
+                //            var succeeded = CreateGamesInSystem(game);
+                //            //break the code or decide what you'll do if succeeded == false;
+                //            // if succeeded is false, return allWentWell
+                //        }
+                //        allWentWell = true;
+                //    }
+                //    return allWentWell;
+                //}
+                //catch (Exception e)
+                //{
+                //    return false;
+                //}
+            }
+
+
+
+
+
+            

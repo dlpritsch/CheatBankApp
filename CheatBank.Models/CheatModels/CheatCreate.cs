@@ -13,16 +13,21 @@ namespace CheatBank.Models.CheatModels
     {
 
 
-        public string GameSystem { get; set; }
+        //public string GameSystem { get; set; }   --- don't need
 
-   
-        [MinLength(2, ErrorMessage = "Please enter the title of the game.")]
-        public string TitleOfGame { get; set; }
+        // put required over them all
+        //[MinLength(2, ErrorMessage = "Please enter the title of the game.")]
+        //public string TitleOfGame { get; set; }    --- don't need
+        //
+        [Required]
+       public int GameId { get; set; }
+
 
         [MinLength(2, ErrorMessage = "Please enter cheat description.")]
         public string NameOfCheat { get; set; }
 
         [MinLength(2, ErrorMessage = "Please enter cheat details.")]
         public string CheatDetails { get; set; }
+
     }
 }

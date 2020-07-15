@@ -4,6 +4,7 @@ using CheatBank.Models.GamesInSystemModels;
 using CheatBank.Models.SystemModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,40 +16,20 @@ namespace CheatBank.Services
 
         public bool CreateGameSystem(GameSystemCreate model)
         {
-            try
-            {
-                bool allWentWell = false;
-                var entity =
-                    new GameSystem()
-                    {
-                        SystemName = model.SystemName
-                    };
-
-                using (var ctx = new ApplicationDbContext())
+            // just build a basic create method like in Game
+            var entity =
+                new GameSystem()
                 {
-                    ctx.GameSystems.Add(entity);
-                    var success = ctx.SaveChanges() == 1;
+                    SystemName = model.SystemName
+                };
 
-                    foreach (var gameInSystem in model.GamesInSystem)
-                    {
-                        var game =
-                            new GamesInSystemCreate()
-                            {
-                                SystemId = entity.SystemId,
-                                GameId = Convert.ToInt32(gameInSystem)
-                            };
-                        var succeeded = CreateGamesInSystem(game);
-                        //break the code or decide what you'll do if succeeded == false;
-                        // if succeeded is false, return allWentWell
-                    }
-                    allWentWell = true;
-                }
-                return allWentWell;
-            }
-            catch (Exception e)
+            using (var ctx = new ApplicationDbContext())
             {
-                return false;
+                ctx.GameSystems.Add(entity);
+                return ctx.SaveChanges() == 1;
             }
+                
+            
         }
 
         public bool CreateGamesInSystem(GamesInSystemCreate gameModel)
@@ -68,11 +49,9 @@ namespace CheatBank.Services
         }
 
         public bool UpdateGameSystem(GameSystemEdit model)
-        {
+        {  //The only thing we can change about a system is its name... it's games are a completely different object, though connected, they are separate and have separate crud
             using (var ctx = new ApplicationDbContext())
             {
-                try
-                {
                     var entity =
                       ctx
                           .GameSystems
@@ -80,51 +59,15 @@ namespace CheatBank.Services
                     if (entity == null)
                         return false;
 
-                   //foreach game in entity.GamesInSystem
-                   foreach (var game in entity.GamesInSystem)
-                    {
-                        var gameInSystem =
-                            new GameListItem()
-                            {
-                                TitleOfGame = game.Game.TitleOfGame,
-                                GameId = game.Game.GameId,
-
-                            };
-                    }
-                   // create a new gameListItem model
-                   // Name = game.Game.Name      and for all the other properties, probably excluding the Cheats
-              
-
-                   // foreach (var oldGames in ctx.GamesInSystems)
-                    //{
-                   //     var happy = ctx.GamesInSystems.Remove(oldGames);
-                   // }
-                    //ctx.SaveChanges();
-                    //var succeed = ctx.IngredientsInDish.Count() == 0;
-
                     entity.SystemName = model.SystemName;
 
-                    foreach (var newGames in model.GamesInSystem)
-                    {
-                        var game =
-                            new GamesInSystemCreate()
-                            {
-                                SystemId = entity.SystemId,
-                                GameId = newGames.Value
-                            };
-                        var succeeded = CreateGamesInSystem(game);
-                    }
-                    ctx.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    return false;
-                }
+                    return ctx.ChangeTracker.HasChanges();  //read into HasChanges a little bit, don't just use it!
+                     
             }
-            return true;
+           
         }
 
-        public bool UpdateGamesInSystem(GamesInSystemEdit model)
+        public bool UpdateGamesInSystem(GamesInSystemEdit model)  // see the notes we wrote in the model
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -134,8 +77,10 @@ namespace CheatBank.Services
                         .Single(e => e.GameSystemId == model.GamesInSystemId);
 
                 entity.GamesInSystemId = model.GamesInSystemId;
-                entity.GameSystemId = model.GamesInSystemId;
-                entity.GameId = model.GameId;
+                entity.GameSystemId = model.OldGameSystemId;
+                entity.GameSystemId = model.NewGameSystemId;
+                entity.GameId = model.OldGameId;
+                entity.GameId = model.NewGameId;
 
                 return ctx.SaveChanges() == 1;
             }
@@ -161,20 +106,31 @@ namespace CheatBank.Services
                 return query.ToArray();
             }
         }
-        public GameSystemDetail GetGameSystemById(int id)
+        public GameSystemDetail GetGameSystemById(int id)  //this is where we will expose the list of games we get access to via our Junction Object
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var listOfGames = new List<GameListItem>(); //create an empty list
                 var entity =
                     ctx
                         .GameSystems
                         .Single(e => e.SystemId == id);
-                
+                foreach (var game in entity.GamesInSystem) //foreach through our entity's collection of games,
+                {
+                    var gameInSystem =
+                        new GameListItem()      // create a new listItem
+                        {
+                            TitleOfGame = game.Game.TitleOfGame,
+                            GameId = game.Game.GameId,
+                        };
+                    listOfGames.Add(gameInSystem);
+                }
                 return
                     new GameSystemDetail
                     {
                         SystemId = entity.SystemId,
-                        SystemName = entity.SystemName
+                        SystemName = entity.SystemName,
+                        GamesInSystem = listOfGames                      
                     };
             }
         }

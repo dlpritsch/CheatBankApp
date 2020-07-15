@@ -22,6 +22,7 @@ namespace CheatBank.Services
             var entity =
                 new Cheat()
                 {
+                    GameId = model.GameId,
                     NameOfCheat = model.NameOfCheat,
                     CheatDetails = model.CheatDetails
                 };
@@ -44,8 +45,8 @@ namespace CheatBank.Services
                             e =>
                             new CheatListItem
                             {
-                                CheatId = e.CheatId,
-                                TitleOfGame = e.TitleOfGame,
+                                CheatId = e.CheatId, 
+                                TitleOfGame = e.Game.TitleOfGame,  // entity exposes Game, Game exposes TitleOfGame. FOREIGN KEYS!!
                                 NameOfCheat = e.NameOfCheat,
                                 CheatDetails = e.CheatDetails
                             }); 
@@ -68,11 +69,12 @@ namespace CheatBank.Services
                         CheatId = entity.CheatId,
                         NameOfCheat = entity.NameOfCheat,
                         CheatDetails = entity.CheatDetails
+                        //maybe plug in what Game it is a cheat for
                     };
             }
         }
         
-        public bool UpdateCheat(CheatEdit model)
+        public bool UpdateCheat(CheatEdit model) //make sure you model matches your functionality
         {
             using(var ctx = new ApplicationDbContext())
             {
@@ -81,9 +83,10 @@ namespace CheatBank.Services
                         .Cheats
                         .Single(e => e.CheatId == model.CheatId);
 
-                entity.CheatId = model.CheatId;
+               // entity.CheatId = model.CheatId;
                 entity.NameOfCheat = model.NameOfCheat;
                 entity.CheatDetails = model.CheatDetails;
+                // you can change the game the cheat is for... maybe someone said a GTA 3 cheat but they meant Vice City
 
                 return ctx.SaveChanges() == 1;
             }

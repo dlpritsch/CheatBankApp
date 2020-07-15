@@ -18,7 +18,6 @@ namespace CheatBank.Services
                 new Game()
                 {
                     TitleOfGame = model.TitleOfGame,
-                    GameId = model.GameId
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -34,13 +33,13 @@ namespace CheatBank.Services
                 var query =
                     ctx
                         .Games
-                        //.Where(e => e.OwnerId == _userId)
                         .Select(
                             e =>
                                 new GameListItem
                                 {
                                     GameId = e.GameId,
                                     TitleOfGame = e.TitleOfGame,
+                                    SystemId = e.G
                                 }
                                 );
                 return query.ToArray();
@@ -69,18 +68,16 @@ namespace CheatBank.Services
                     };
             }
         }
-        public bool UpdateGame(GameEdit model)
+        public bool UpdateGame(GameEdit model) // change model to just have info we are going to edit, may have cascading effects on validation in controller... but maybe not
         {
             using(var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Games
-                        .Single(e => e.GameId == model.GameId /*&& e.OwnerId == _userId*/);
-                entity.GameId = model.GameId;
-                entity.GameSystem = model.GameSystem;
+                        .Single(e => e.GameId == model.GameId);
+
                 entity.TitleOfGame = model.TitleOfGame;
-                //entity.Cheat = model.Cheat;
 
                 return ctx.SaveChanges() == 1;
             }
@@ -93,7 +90,7 @@ namespace CheatBank.Services
                 var entity =
                     ctx
                         .Games
-                        .Single(e => e.GameId == gameId /*&& e.OwnerId == _userId*/);
+                        .Single(e => e.GameId == gameId);
 
                 ctx.Games.Remove(entity);
 

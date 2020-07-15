@@ -17,7 +17,7 @@ namespace CheatBank.Data
         [Required]
         public string TitleOfGame { get; set; }
 
-        public string GameSystem { get; set; }
+        public string GameSystem { get; set; } // we are going to remove this, because we hold the info about the system for the game in the GemesInSystem
 
       
         public virtual ICollection<Cheat> Cheats { get; set; } = new List<Cheat>();

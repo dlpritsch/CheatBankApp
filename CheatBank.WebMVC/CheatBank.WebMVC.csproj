@@ -346,21 +346,21 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Cheat\Edit.cshtml" />
-    <Content Include="Views\Cheat\Create.cshtml" />
-    <Content Include="Views\Cheat\Delete.cshtml" />
     <Content Include="Views\Cheat\Index.cshtml" />
+    <Content Include="Views\Cheat\Create.cshtml" />
     <Content Include="Views\Cheat\Details.cshtml" />
+    <Content Include="Views\Cheat\Edit.cshtml" />
+    <Content Include="Views\Cheat\Delete.cshtml" />
+    <Content Include="Views\Game\Create.cshtml" />
+    <Content Include="Views\Game\Details.cshtml" />
+    <Content Include="Views\Game\Delete.cshtml" />
     <Content Include="Views\GameSystem\Index.cshtml" />
+    <Content Include="Views\Game\Index.cshtml" />
     <Content Include="Views\GameSystem\Create.cshtml" />
     <Content Include="Views\GameSystem\Details.cshtml" />
     <Content Include="Views\GameSystem\Edit.cshtml" />
     <Content Include="Views\GameSystem\Delete.cshtml" />
-    <Content Include="Views\Game\Create.cshtml" />
-    <Content Include="Views\Game\Delete.cshtml" />
-    <Content Include="Views\Game\Details.cshtml" />
     <Content Include="Views\Game\Edit.cshtml" />
-    <Content Include="Views\Game\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

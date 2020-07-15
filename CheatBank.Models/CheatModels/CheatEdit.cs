@@ -13,7 +13,7 @@ namespace CheatBank.Models.CheatModels
         public int CheatId { get; set; }
 
 
-        public string GameSystem { get; set; }
+        //public string GameSystem { get; set; }
 
 
         public string NameOfCheat { get; set; }

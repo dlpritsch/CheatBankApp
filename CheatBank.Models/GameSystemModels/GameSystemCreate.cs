@@ -13,6 +13,6 @@ namespace CheatBank.Models.SystemModels
         [Required]
         public string SystemName { get; set; }
 
-        public int?[] GamesInSystem { get; set; }
+        //public int?[] GamesInSystem { get; set; } //you could use this to subsequently add games to the system as soon as you create it... we don't need to do that
     }
 }

@@ -1,0 +1,50 @@
+﻿@model CheatBank.Models.CheatModels.CheatDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CheatDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CheatId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheatId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfCheat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOfCheat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheatDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheatDetails)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

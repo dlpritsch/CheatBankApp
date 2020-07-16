@@ -13,6 +13,5 @@ C:\Users\dlpri\OneDrive\Desktop\Eleven Fifty Projects\CheatBank\CheatBank.Data\o
 C:\Users\dlpri\OneDrive\Desktop\Eleven Fifty Projects\CheatBank\CheatBank.Data\obj\Debug\CheatBank.Data.csproj.CopyComplete
 C:\Users\dlpri\OneDrive\Desktop\Eleven Fifty Projects\CheatBank\CheatBank.Data\obj\Debug\CheatBank.Data.dll
 C:\Users\dlpri\OneDrive\Desktop\Eleven Fifty Projects\CheatBank\CheatBank.Data\obj\Debug\CheatBank.Data.pdb
-C:\Users\dlpri\OneDrive\Desktop\Eleven Fifty Projects\CheatBank\CheatBank.Data\obj\Debug\CheatBank.Data.csprojAssemblyReference.cache
 C:\Users\dlpri\OneDrive\Desktop\Eleven Fifty Projects\CheatBank\CheatBank.Data\obj\Debug\CheatBank.Data.Migrations.hurdur.resources
 C:\Users\dlpri\OneDrive\Desktop\Eleven Fifty Projects\CheatBank\CheatBank.Data\obj\Debug\CheatBank.Data.csproj.GenerateResource.cache

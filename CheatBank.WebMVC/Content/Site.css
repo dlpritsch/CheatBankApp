@@ -22,3 +22,39 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.jumbotron {
+    background-image: url(img/nes.jpg);
+    background-position: center;
+    background-size: 1280px auto;
+    background-repeat: no-repeat;
+    width: 1109px;
+    height: 720px;
+}
+
+
+.navbar-nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: row;
+    padding-left: 0px;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.navbar-nav li{
+    margin-right: 10px;
+}
+
+    .navbar-nav li a:hover {
+        color: #5bc0de;
+    }
+
+.navbar-collapse{
+    margin-bottom: 20px;
+}
+

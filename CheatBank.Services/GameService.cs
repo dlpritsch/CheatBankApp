@@ -39,7 +39,7 @@ namespace CheatBank.Services
                                 {
                                     GameId = e.GameId,
                                     TitleOfGame = e.TitleOfGame,
-                                    SystemId = e.G
+                                    //SystemId = e.
                                 }
                                 );
                 return query.ToArray();
